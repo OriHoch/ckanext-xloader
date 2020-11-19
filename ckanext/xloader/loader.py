@@ -220,7 +220,7 @@ def load_csv(csv_filepath, resource_id, mimetype='text/csv', logger=None):
                                 encoding='UTF8',
                                 ),
                             f)
-                    except psycopg2.DataError as e:
+                    except (psycopg2.DataError, psycopg2.ProgrammingError) as e:
                         # e is a str but with foreign chars e.g.
                         # 'extra data: "paul,pa\xc3\xbcl"\n'
                         # but logging and exceptions need a normal (7 bit) str
